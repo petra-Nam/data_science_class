@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Step 2: Load the dataset
-df = pd.read_csv("houses.csv")  # replace with your file path
+df = pd.read_csv("houses.csv")  
 print(df.head())
 print(df.columns)
 
@@ -15,7 +15,7 @@ print(f"Total properties with basements: {len(df_basement)}")
 # Step 4: Market potential analysis per city
 city_summary = df_basement.groupby('city').agg(
     avg_price=('price', 'mean'),
-    num_properties=('price', 'size'),  # count of properties
+    num_properties=('price', 'size'),  
     avg_sqft_living=('sqft_living', 'mean'),
     avg_sqft_basement=('sqft_basement', 'mean')
 ).reset_index()
@@ -55,7 +55,7 @@ plt.title('Correlation Matrix (Properties with Basements)')
 plt.show()
 
 # Step 9: Highlight cities with multiple affordable properties (4-5+) for "client clusters"
-affordable_threshold = 500000  # adjust as needed
+affordable_threshold = 500000 
 city_affordable = df_basement[df_basement['price'] <= affordable_threshold].groupby('city').agg(
     num_affordable=('price', 'size')
 ).reset_index()
